@@ -11,13 +11,15 @@ from slowapi.errors import RateLimitExceeded
 from routes import api_router
 from pymilvus import connections
 from utils.config import AppConfig
-
+from milvus.schema import create_all_collections
 app = FastAPI()
 @app.on_event("startup")
 def connect_milvus():
     try:
         connections.connect(uri=AppConfig.MILVUS_URL, password=AppConfig.MILVUS_PASSWORD, user=AppConfig.MILVUS_USERNAME, token=AppConfig.MILVUS_TOKEN)
         print("Milvus connected successfully")
+        create_all_collections()
+        print("Milvus all collections created.")
     except Exception as e:
         print("(!) Milvus connection failed")
         raise RuntimeError("Failed to connect Milvus") from e
