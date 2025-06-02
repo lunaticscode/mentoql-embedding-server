@@ -9,6 +9,7 @@ uvicorn = {extras = ["standard"], version = "*"}
 slowapi = "*"
 python-dotenv = "*"
 pymilvus = "*"
+sentence-transformers = "*"
 
 [dev-packages]
 
