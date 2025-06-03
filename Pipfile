@@ -11,6 +11,7 @@ python-dotenv = "*"
 pymilvus = "*"
 sentence-transformers = "*"
 pyjwt = "*"
+numpy = "<2.0"
 
 [dev-packages]
 

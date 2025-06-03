@@ -3,11 +3,8 @@ from pydantic import BaseModel
 from controllers.seed import get_answer_from_seed
 from controllers.seed import insert_seed_from_mento
 from middlewares.auth_middleware import auth_middleware
-def seed_route_logging():
-    print("seed_route_logging")
-    return "asd"
 
-seed_router = APIRouter(tags=["Seed"], dependencies=[auth_middleware()])
+seed_router = APIRouter(tags=["Seed"])
 @seed_router.get("/")
 def get_answer():
     answer = get_answer_from_seed()
@@ -17,6 +14,8 @@ class SeedInput(BaseModel):
     question: str
     answer: str
 @seed_router.post("/")
-def insert_seed(seed: SeedInput):
-    insert_result = insert_seed_from_mento(seed.question, seed.answer)
+def insert_seed(seed: SeedInput, mento: dict = auth_middleware()):
+    print(seed)
+    mento_id = mento['mento_id']
+    insert_result = insert_seed_from_mento(seed.question, seed.answer, mento_id)
     return ""

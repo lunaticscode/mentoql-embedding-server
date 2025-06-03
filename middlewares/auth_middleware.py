@@ -3,10 +3,12 @@ import jwt
 from utils.config import AppConfig
 from utils.logger import log_error
 auth_err_msg_for_user = "(!) Authentication failed"
+
 def auth_middleware():
     def _inner(request: Request):
         try:
             token = request.headers.get("Authorization")
+            print(token, AppConfig.JWT_SECRET)
             payload = jwt.decode(token, AppConfig.JWT_SECRET, algorithms=AppConfig.JWT_ALGORITHM)
             return payload
         except jwt.ExpiredSignatureError:
