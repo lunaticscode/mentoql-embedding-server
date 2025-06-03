@@ -8,4 +8,6 @@ class AppConfig:
     MILVUS_TOKEN: str = os.getenv("MILVUS_TOKEN", "")
     MILVUS_USERNAME: str = os.getenv("MILVUS_USERNAME", "")
     MILVUS_PASSWORD: str = os.getenv("MILVUS_PASSWORD", "")
+    JWT_SECRET: str = os.getenv("JWT_SECRET", "")
+    JWT_ALGORITHM: str = os.getenv("JWT_ALGORITHM", "")
 

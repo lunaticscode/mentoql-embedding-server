@@ -10,6 +10,7 @@ slowapi = "*"
 python-dotenv = "*"
 pymilvus = "*"
 sentence-transformers = "*"
+pyjwt = "*"
 
 [dev-packages]
 
